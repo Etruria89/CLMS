@@ -8,10 +8,14 @@ clc; clear; close all;
 %--------------------------------------------------------------------------
 
 % A, B, C and D matrices of the LTI (D is null)
-A = [1 1; -2 0];
-B = [0 ; 1 ];
-C = [1 0];
+A = [1 2; 0 -1];
+B = [1 ; 0 ];
+C = [1 1];
 D = [0];
+
+% Trigger for the check of the asimptotical stability of the system if not
+% controllable using a u = Kx lineaer controller
+CL_asymp_stable_check = true;
 
 % Closed-loop pole assignement with system fully observable
 % ---------------------------------------------------------
@@ -23,7 +27,7 @@ CLP_full = true;
 syms k1 k2;
 K = [k1 k2];
 % Specify the numerical values for the position of the closed-loop poles
-CL_K_Poles = [ -3, -3];
+CL_K_Poles = [ -1 , -2];
 
 
 % Closed-loop pole assignement with system partially observable
@@ -37,7 +41,7 @@ syms g1 g2;
 G = [g1; g2];
 % Specify the numerical values for the position of the closed-loop poles
 % for a partially accessible system
-CL_G_Poles = [ -2; -2];
+CL_G_Poles = [ -3; -3];
 
 %--------------------------------------------------------------------------
 %--------------------------------------------------------------------------
@@ -72,8 +76,10 @@ if ctrb_rank == size(A,1)
 elseif ctrb_rank < size(A,1)
     disp("The system is NOT fully controllable!");
     CTRB = false;
+    if CL_asymp_stable_check
+        asymp_stability_func(sys, K);
+    end
 end
-
 
 % Check observability matix
 % Reminder
@@ -122,8 +128,8 @@ end
 %   |         |_______________________________          |
 %   |                                        |          |
 %   |                           ____________\|/____     |
-%   |                         |                   |<----'
-%   E ------------------------| dz=(A-GC)z+Gy+Bu  |
+%   |           z             |                   |<----'
+%   K ------------------------| dz=(A-GC)z+Gy+Bu  |
 %                             |___________________|
 %
 %                   

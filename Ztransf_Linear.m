@@ -17,6 +17,11 @@ B = [0; 1];
 C = [1 1];
 D = [0]; 
 
+% System Analysis
+% Note: If this function is true stability, controllability and 
+% observability of the discrete LTI are checked
+Analysis = true;
+
 % Output calculation
 % Note: This calculation is performed if "Output" is true only
 Output = true;
@@ -90,4 +95,3 @@ if Output
     xlabel("Time [s]")
     
 end
-

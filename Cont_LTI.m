@@ -52,14 +52,14 @@ CL_G_Poles = [ -3; -3];
 % Create system matrices
 sys = ss(A,B,C, D);
 
-% Check matrix stability
+% Check open loop system stability
 eig_A = eig(A);
 disp("Eigenvalues of the system:")
 disp(eig_A)
-if all(eig_A < 0)
-    disp("A is stable!");
-elseif max(eig_A > 0)
-    disp("A is NOT stable!");
+if all(real(eig_A) < 0)
+    disp("The system is asymptotically stable!");
+elseif max(real(eig_A) > 0)
+    disp("The system is NOT stable!");
 else
     disp("Check eigenvalues of A!");    
 end
@@ -72,10 +72,10 @@ Co = ctrb(A,B);
 disp(Co);
 ctrb_rank = rank(Co);
 if ctrb_rank == size(A,1)
-    disp("The system is fully controllable");
+    disp("The system is completely controllable");
     CTRB = true;
 elseif ctrb_rank < size(A,1)
-    disp("The system is NOT fully controllable!");
+    disp("The system is NOT completely controllable!");
     CTRB = false;
     if CL_asymp_stable_check
         asymp_stability_func(sys, K);
@@ -90,10 +90,10 @@ Obs = obsv(A,C);
 disp(Obs);
 obsv_rank = rank(Obs);
 if obsv_rank == size(A,1)
-    disp("The system is fully observable");
+    disp("The system is completely observable");
     OBSV = true;
 elseif obsv_rank < size(A,1)
-    disp("The system is NOT fully observable!");
+    disp("The system is NOT completely observable!");
     OBSV = false;
 end
 

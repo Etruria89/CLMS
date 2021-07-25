@@ -36,11 +36,13 @@ function [Out_vals] = asymp_stability_func(system, symbols)
     
     % Calculate sI - (A + BK)
     sI = s * eye(size(A,1));
-    sI_M = (sI - M)
+    sI_M = (sI - M);
     
     % Evaluate its determinant and put it in a fancy way
-    car_eq_tmp = det(sI_M);
-    car_eq = collect(car_eq_tmp, s)
+    car_eq_tmp = det(sI_M);    
+    car_eq = collect(car_eq_tmp, s);
+    disp("Controlled problem characteristic equation:")
+    disp(car_eq);
    
     % Compute the closed loop controller parameters as functions of K
     CL_sol = solve([car_eq == 0], s);
@@ -50,8 +52,8 @@ function [Out_vals] = asymp_stability_func(system, symbols)
     CL_solution = solve([CL_sol < zeros(length(K),1)], K,'ReturnConditions',true);
     
     % Results with matlab mapping between varaibles  
-    disp("Controller varaibles:"); disp(K);
-    disp("Matlab varaible Mapping"); disp(CL_solution.parameters);
+    disp("Controller variables:"); disp(K);
+    disp("Matlab variables Mapping"); disp(CL_solution.parameters);
     disp("Conditions"); disp(CL_solution.conditions);   
 
 end

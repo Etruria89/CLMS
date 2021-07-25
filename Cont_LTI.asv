@@ -1,6 +1,4 @@
 % Continuous LTI analyser
-% updated:  24/07/2021
-% Author: Federico Danzi
 clc; clear; close all;
 
 %--------------------------------------------------------------------------
@@ -8,10 +6,11 @@ clc; clear; close all;
 %--------------------------------------------------------------------------
 
 % A, B, C and D matrices of the LTI (D is null)
-A = [1 1; -2 0];
+A = [2 0; 0 2];
 B = [0 ; 1 ];
-C = [1 0];
-D = [0];
+C = [1 1];
+D = [ 0 ];
+
 
 % Closed-loop pole assignement with system fully observable
 % ---------------------------------------------------------
@@ -23,7 +22,7 @@ CLP_full = true;
 syms k1 k2;
 K = [k1 k2];
 % Specify the numerical values for the position of the closed-loop poles
-CL_K_Poles = [ -3, -3];
+CL_K_Poles = [ -6, -6];
 
 
 % Closed-loop pole assignement with system partially observable
@@ -37,7 +36,7 @@ syms g1 g2;
 G = [g1; g2];
 % Specify the numerical values for the position of the closed-loop poles
 % for a partially accessible system
-CL_G_Poles = [ -2; -2];
+CL_G_Poles = [ -3; -3];
 
 %--------------------------------------------------------------------------
 %--------------------------------------------------------------------------
@@ -117,8 +116,8 @@ end
 % System:           __________               _______
 %             u    |          |     x       |       |     y
 %    --------------| dx=Ax+Bu |------------>|   C   |------------>
-%  /|\        |    |_y =Cx+Du |             |_______|   |  
-%   |         |    |__________|                         |
+%  /|\        |    |_y =Cx+Du
+%   |_________|             |_______|   |
 %   |         |_______________________________          |
 %   |                                        |          |
 %   |                           ____________\|/____     |

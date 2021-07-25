@@ -23,13 +23,11 @@ Output = true;
 % Initial condition: satate varaibles at k=0
 % Note: x_zero must have the same number of rows as the columns of A 
 x_zero = [0; 0];
-% Size of the output vector
-output_size = 1; % It is in most of the cases 1 
 % Input vector
 % Note: The input vector U can have any lenght, three extra zeros at the
 % end are added for fun to see how the system evolves when the input is
 % removed
-U = [1 0 0 0 0 0 0 0 0 0];
+U = [1 0 0 0];
 
 %--------------------------------------------------------------------------
 %--------------------------------------------------------------------------
@@ -69,25 +67,8 @@ F = subs(eAt)
 if Output
     % Initialize x_k to x_zero
     x_k = x_zero;
-    % Initialize the output vector
-    y = zeros(length(U), output_size);
-    % Create the time vector
-    time = linspace(0, (length(U)-1)*T, length(U));
+    %Loop over the input
     
-    %Loop over the input and estimate the output
-    for i = 1 : length(U)
-        % x(k+1) = F * x(k) + G * u(k)
-        % y(k) = C * x(k) + D * u(k)
-        x_kp1 = F * x_k + G * U(i);
-        y(i) = C * x_k + D * U(i);
-        % Update the state vector for the following step
-        x_k = x_kp1;        
-    end
-    
-    figure(1)
-    stairs(time, y, 'LineWidth',1.5)
-    axis([0 length(U)*T, min(y) max(y)*1.1])
-    xlabel("Time [s]")
     
 end
 

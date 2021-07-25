@@ -35,9 +35,9 @@ end
 % Reminder:
 % Controllability matrix = [G, FG, F^2G, ... , F^(n-1)G]
 disp("Controllability Matrix:");
-Discr_Co = ctrb(F,G);
-disp(Discr_Co);
-ctrb_rank = rank(Discr_Co);
+P = ctrb(F,G);
+disp(P);
+ctrb_rank = rank(P);
 if ctrb_rank == size(F,1)
     disp("The system is completely controllable");
 elseif ctrb_rank < size(F,1)
@@ -48,13 +48,11 @@ end
 % Reminder
 % Observability matrix = [C; C, CA^1, ... , CA^(n-1)]
 disp("Observability Matrix:");
-Obs = obsv(F,C);
-disp(Obs);
-obsv_rank = rank(Obs);
+Q = obsv(F,C);
+disp(Q);
+obsv_rank = rank(Q);
 if obsv_rank == size(F,1)
     disp("The system is completely observable");
-    OBSV = true;
 elseif obsv_rank < size(F,1)
     disp("The system is NOT completely observable!");
-    OBSV = false;
 end

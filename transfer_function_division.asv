@@ -1,0 +1,32 @@
+% Discrete transfer function divisions
+% updated:  25/07/2021
+% Author: Federico Danzi
+clc; clear; close all;
+
+%--------------------------------------------------------------------------
+% Input
+%--------------------------------------------------------------------------
+
+% Symbolic variable for transfer function
+syms z
+
+% Numerator and denominator of the transfer function
+Nz = z-2;
+Dz = z^2*(z-1)^2;
+
+
+% Remember 
+% Y(z)/U(z)=T(z) = Transfer function
+
+%--------------------------------------------------------------------------
+% Core
+%--------------------------------------------------------------------------
+
+% Estimate the degree of numerator and denominator
+Nz_deg = feval(symengine, 'degree', Nz)
+Dz_deg = feval(symengine, 'degree', Dz)
+
+if Dz_deg > Nz_deg
+    
+else
+    disp("Degre")

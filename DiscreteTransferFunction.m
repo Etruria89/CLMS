@@ -79,5 +79,5 @@ if DTz_deg >= NTz_deg
     Dz_show = collect(Dz_divide, z)
     
 else
-    disp("Degree of numerator higher than numerator the system is not consistent!")
+    disp("Degree of numerator higher than numerator the system, this is not consistent!")
 end

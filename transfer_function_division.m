@@ -11,9 +11,8 @@ clc; clear; close all;
 syms z
 
 % Numerator and denominator of the transfer function
-NTz = z-2;
-DTz = z^2*(z-1)^2;
-
+NTz = z^2+1;
+DTz = z^3+2*z+3;
 
 % Remember 
 % Y(z)/U(z)=T(z) = Transfer function

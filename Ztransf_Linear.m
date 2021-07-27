@@ -89,9 +89,18 @@ if Output
         x_k = x_kp1;        
     end
     
+    % Evaluate the impulse response of the continuus LTI system
+    con_sys = ss(A, B, C, D);
+    T_fin = (length(U)-1) * T;
+    T_cont = linspace(0, T_fin, length(U));
+    [y_cont,t] = lsim(con_sys, U, T_cont);
+    
     figure(1)
     stairs(time, y, 'LineWidth',1.5)
+    hold on
+    plot(t, y_cont, 'LineWidth',1.5)
     axis([0 length(U)*T, min(y) max(y)*1.1])
-    xlabel("Time [s]")
+    legend(["Discrete LTI", "Continuous LTI"], 'Location', "best")
+    xlabel("Time [s]"); ylabel("Y [-]")
     
 end

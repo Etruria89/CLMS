@@ -14,7 +14,7 @@ T = 1;
 A = [-1 1; 0 0];
 B = [0; 1];
 % Define your B and C matrix of your continuous LTI
-C = [1 1];
+C = [1 0];
 D = [0]; 
 
 % System Analysis

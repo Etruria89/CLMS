@@ -8,9 +8,9 @@ clc; clear; close all;
 %--------------------------------------------------------------------------
 
 % A, B, C and D matrices of the LTI (D is null)
-A = [-2 1; 0 -1];
-B = [0 ; 1];
-C = [1 0];
+A = [1 2; 0 2];
+B = [1; 1];
+C = [1 1];
 D = [0];
 
 % Trigger for the check of the asimptotical stability of the system if not
@@ -27,7 +27,7 @@ CLP_full = true;
 syms k1 k2;
 K = [k1 k2];
 % Specify the numerical values for the position of the closed-loop poles
-CL_K_Poles = [ -1 + 1i , -1 - 1i]; % Note: 1i is the immaginary number
+CL_K_Poles = [ -3 , -3]; % Note: 1i is the immaginary number
 
 
 % Closed-loop pole assignement with system partially observable
@@ -41,7 +41,7 @@ syms g1 g2;
 G = [g1; g2];
 % Specify the numerical values for the position of the closed-loop poles
 % for a partially accessible system
-CL_G_Poles = [ -3; -3];
+CL_G_Poles = [ -3; 4];
 
 %--------------------------------------------------------------------------
 %--------------------------------------------------------------------------
